@@ -65,7 +65,7 @@ class Cofrinho {
     }
 }
 
-public class Principal {
+public class main {
     public static void main(String[] args) {
         Cofrinho cofrinho = new Cofrinho();
         cofrinho.adicionar(new Dolar(10.0));
