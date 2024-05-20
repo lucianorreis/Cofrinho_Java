@@ -61,17 +61,29 @@ class Cofrinho {
 
 public class Main {
     public static void main(String[] args) {
+        double CotacaoDolar = 5.0;
+        double CotacaoEuro = 5.50;
+        double CotacaoReal = 1;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Informe a quantidade em dolar:");
+        double valorDolar = scanner.nextDouble();
+        System.out.println("Informe a quantidade em euro:");
+        double valorEuro = scanner.nextDouble();
+        System.out.println("Informe a quantidade em real:");
+        double valorReal = scanner.nextDouble();
+
+
         Cofrinho cofrinho = new Cofrinho();
-        cofrinho.adicionar(new Dolar(10.0));
-        cofrinho.adicionar(new Euro(8.0));
-        cofrinho.adicionar(new Real(20.0));
+        cofrinho.adicionar(new Dolar(CotacaoDolar * valorDolar));
+        cofrinho.adicionar(new Euro(CotacaoEuro * valorEuro));
+        cofrinho.adicionar(new Real(CotacaoReal * valorReal));
 
         cofrinho.listarMoedas();
-        double Dolar = 5.10;
-        double Euro = 5.55;
-        double Real = cofrinho.calcularValorTotalEmReal();
-        double valorTotalEmReal = Dolar * Real + Euro * Real;
 
-        System.out.println("Valor total em Real: R$" + valorTotalEmReal);
+        System.out.println(cofrinho.calcularValorTotalEmReal());
+        
+        scanner.close();
     }
 }
