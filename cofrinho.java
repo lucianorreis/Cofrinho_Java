@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 abstract class Moeda {
     protected double valor;
@@ -61,29 +62,63 @@ class Cofrinho {
 
 public class Main {
     public static void main(String[] args) {
-        double CotacaoDolar = 5.0;
-        double CotacaoEuro = 5.50;
-        double CotacaoReal = 1;
-
         Scanner scanner = new Scanner(System.in);
+        int opcao = 0;
 
-        System.out.println("Informe a quantidade em dolar:");
-        double valorDolar = scanner.nextDouble();
-        System.out.println("Informe a quantidade em euro:");
-        double valorEuro = scanner.nextDouble();
-        System.out.println("Informe a quantidade em real:");
-        double valorReal = scanner.nextDouble();
+        while (opcao != 4) {
+            System.out.println("##-- Menu --##\n");
+            System.out.println("|-----------------------------|");
+            System.out.println("| Opção 1 - Adicionar dinehiro     |");
+            System.out.println("| Opção 2 - Listar dinheiro        |");
+            System.out.println("| Opção 3 - Tirar dinheiro        |");
+            System.out.println("| Opção 4 - Sair              |");
+            System.out.println("|-----------------------------|");
+            System.out.print("Digite uma opção: ");
+            opcao = scanner.nextInt();
 
+            switch (opcao) {
+                case 1:
+                    System.out.println("\nOpção Adicionar dinheiro ");
+                    double CotacaoDolar = 5.0;
+                    double CotacaoEuro = 5.50;
+                    double CotacaoReal = 1;
+            
+                    Scanner scanner = new Scanner(System.in);
+            
+                    System.out.println("Informe a quantidade em dolar:");
+                    double valorDolar = scanner.nextDouble();
+                    System.out.println("Informe a quantidade em euro:");
+                    double valorEuro = scanner.nextDouble();
+                    System.out.println("Informe a quantidade em real:");
+                    double valorReal = scanner.nextDouble();
+            
+            
+                    Cofrinho cofrinho = new Cofrinho();
+                    cofrinho.adicionar(new Dolar(CotacaoDolar * valorDolar));
+                    cofrinho.adicionar(new Euro(CotacaoEuro * valorEuro));
+                    cofrinho.adicionar(new Real(CotacaoReal * valorReal));
+            
+                    cofrinho.listarMoedas();
+            
+                    System.out.println(cofrinho.calcularValorTotalEmReal());
+                    
+                    scanner.close();
+                    break;
+                case 2:
+                    System.out.println("\nOpção Listar dinheiro ");
+                    break;
+                case 3:
+                    System.out.println("\nOpção Tirar dinheiro ");
+                    break;
+                case 4:
+                    System.out.println("\nAté logo!");
+                    break;
+                default:
+                    System.out.println("\nOpção Inválida!");
+            }
+        }
 
-        Cofrinho cofrinho = new Cofrinho();
-        cofrinho.adicionar(new Dolar(CotacaoDolar * valorDolar));
-        cofrinho.adicionar(new Euro(CotacaoEuro * valorEuro));
-        cofrinho.adicionar(new Real(CotacaoReal * valorReal));
-
-        cofrinho.listarMoedas();
-
-        System.out.println(cofrinho.calcularValorTotalEmReal());
-        
         scanner.close();
     }
+    
 }
