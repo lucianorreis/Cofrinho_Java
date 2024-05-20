@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 abstract class Moeda {
     protected double valor;
@@ -67,6 +67,11 @@ public class Main {
         cofrinho.adicionar(new Real(20.0));
 
         cofrinho.listarMoedas();
-        System.out.println("Valor total em Real: R$" + cofrinho.calcularValorTotalEmReal());
+        double Dolar = 5.10;
+        double Euro = 5.55;
+        double Real = cofrinho.calcularValorTotalEmReal();
+        double valorTotalEmReal = Dolar * Real + Euro * Real;
+
+        System.out.println("Valor total em Real: R$" + valorTotalEmReal);
     }
 }
