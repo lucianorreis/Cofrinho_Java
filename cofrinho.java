@@ -18,6 +18,11 @@ abstract class Moeda {
     public String getPais() {
         return pais;
     }
+
+    public String getNome() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNome'");
+    }
 }
 
 class Dolar extends Moeda {
