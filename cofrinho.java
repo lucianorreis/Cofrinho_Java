@@ -183,17 +183,23 @@ public class main {
         System.out.print("> Quantidade em real: ");
         int quantidadeReal = scanner.nextInt();
 
+        List<Moeda> moedasARemover = new ArrayList<>();
+
         for (Moeda moeda : cofrinho.moedas) {
             if (moeda instanceof Dolar && quantidadeDolar > 0) {
-                cofrinho.tirar(moeda);
+                moedasARemover.add(moeda);
                 quantidadeDolar--;
             } else if (moeda instanceof Euro && quantidadeEuro > 0) {
-                cofrinho.tirar(moeda);
+                moedasARemover.add(moeda);
                 quantidadeEuro--;
             } else if (moeda instanceof Real && quantidadeReal > 0) {
-                cofrinho.tirar(moeda);
+                moedasARemover.add(moeda);
                 quantidadeReal--;
             }
+        }
+
+        for (Moeda moeda : moedasARemover) {
+            cofrinho.tirar(moeda);
         }
 
         System.out.println("Valor total em reais após retirada: " + cofrinho.calcularValorTotalEmReal());
