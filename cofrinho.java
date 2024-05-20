@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.ArrayList;
 
 abstract class Moeda {
@@ -8,7 +9,6 @@ abstract class Moeda {
         this.valor = valor;
         this.pais = pais;
     }
-
     // Métodos getters para valor e país
     public double getValor() {
         return valor;
@@ -18,7 +18,6 @@ abstract class Moeda {
         return pais;
     }
 }
-
 // Subclasses específicas de moedas (mostrando sua nacinalidade)
 class Dolar extends Moeda {
     public Dolar(double valor) {
@@ -37,10 +36,9 @@ class Real extends Moeda {
         super(valor, "Brasil");
     }
 }
-
 // Classe Cofrinho: adicionar, remover e listar as moedas
 class Cofrinho {
-    private ArrayList<Moeda> moedas = new ArrayList<>();
+    private List<Moeda> moedas = new ArrayList<>();
 
     public void adicionar(Moeda moeda) {
         moedas.add(moeda);
@@ -57,15 +55,11 @@ class Cofrinho {
     }
 
     public double calcularValorTotalEmReal() {
-        double total = 0;
-        for (Moeda moeda : moedas) {
-            total += moeda.getValor();
-        }
-        return total;
+        return moedas.stream().mapToDouble(Moeda::getValor).sum();
     }
 }
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         Cofrinho cofrinho = new Cofrinho();
         cofrinho.adicionar(new Dolar(10.0));
