@@ -78,6 +78,9 @@ class Cofrinho {
     public void tirar(Moeda moeda) {
         moedas.remove(moeda);
     }
+    public List<Moeda> getMoedas() {
+        return moedas;
+    }
 
     public void listarMoedas() {
         int quantidadeDolar = 0;
@@ -185,7 +188,7 @@ public class main {
 
         List<Moeda> moedasARemover = new ArrayList<>();
 
-        for (Moeda moeda : cofrinho.moedas) {
+        for (Moeda moeda : cofrinho.getMoedas()) {
             if (moeda instanceof Dolar && quantidadeDolar > 0) {
                 moedasARemover.add(moeda);
                 quantidadeDolar--;
