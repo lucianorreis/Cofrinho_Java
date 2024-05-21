@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-abstract class Moeda {
+abstract class Moeda {//classe para identificar o que e moeda e nacionalidade
     protected double valor;
     protected String pais;
 
@@ -20,11 +20,11 @@ abstract class Moeda {
     }
 
     public String getNome() {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'getNome'");
     }
 }
-
+//classe da moeda dolar e cambio
 class Dolar extends Moeda {
     private int quantidade;
 
@@ -40,7 +40,7 @@ class Dolar extends Moeda {
         return quantidade;
     }
 }
-
+//classe da moeda euro e cambio
 class Euro extends Moeda {
     private int quantidade;
 
@@ -56,7 +56,7 @@ class Euro extends Moeda {
         return quantidade;
     }
 }
-
+//classe da moeda real
 class Real extends Moeda {
     private int quantidade;
 
@@ -73,8 +73,8 @@ class Real extends Moeda {
     }
 }
 
-class Cofrinho {
-    private List<Moeda> moedas = new ArrayList<>();
+class Cofrinho { //classe para identificar o cofrinho e organizando lista
+	private List<Moeda> moedas = new ArrayList<>();
 
     public void adicionar(Moeda moeda) {
         moedas.add(moeda);
@@ -83,6 +83,7 @@ class Cofrinho {
     public void tirar(Moeda moeda) {
         moedas.remove(moeda);
     }
+
     public List<Moeda> getMoedas() {
         return moedas;
     }
@@ -101,24 +102,19 @@ class Cofrinho {
                 quantidadeReal++;
             }
         }
-        
-        System.out.println("Quantidade de moedas:");
-        System.out.println("Dólar: " + quantidadeDolar);
-        System.out.println("Euro: " + quantidadeEuro);
-        System.out.println("Real: " + quantidadeReal);
     }
-
+    //funcao para calcular todo o valor ja em real
     public double calcularValorTotalEmReal() {
         return moedas.stream().mapToDouble(Moeda::getValor).sum();
     }
     
 }
-
+//cotacao das moedas
 public class main {
     private static final double COTACAO_DOLAR = 5.10;
     private static final double COTACAO_EURO = 5.55;
     private static final double COTACAO_REAL = 1;
-
+//main com o menu e funcionalidades abaixo.
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
@@ -132,7 +128,7 @@ public class main {
             System.out.println("4 - Sair");
             System.out.print("Digite sua opção: ");
             int opcao = scanner.nextInt();
-
+            //opcoes do menu
             switch (opcao) {
                 case 1:
                     adicionarDinheiro(scanner, cofrinho);
@@ -153,7 +149,7 @@ public class main {
             }
         }
     }
-
+    //funcao para adicionar dinheiro
     private static void adicionarDinheiro(Scanner scanner, Cofrinho cofrinho) {
         System.out.println("\nAdicionar dinheiro:");
         System.out.print("> Quantidade em dólar: ");
@@ -169,20 +165,32 @@ public class main {
 
         System.out.println("Valor total em reais: " + cofrinho.calcularValorTotalEmReal());
     }
-    
-    private static void listaDinehrio(Scanner scanner, Cofrinho cofrinho) {
-    	List<Moeda> moedas = new ArrayList<>();
-    	moedas.add(new Dolar(100)); // Adiciona 100 dólares à lista
-    	moedas.add(new Euro(50));   // Adiciona 50 euros à lista
-    	moedas.add(new Real(500));  // Adiciona 500 reais à lista
-
-    	// Mostra a quantidade de cada tipo de moeda que você possui
-    	for (Moeda moeda : moedas) {
-    	    System.out.println("Você possui " + moeda.getQuantidade() + " " + moeda.getNome());
-    	}
+    //funcao para listar as moedas que ja tem no cofrinho
+    private static void listarDinheiro(Scanner scanner, Cofrinho cofrinho) {
+        List<Moeda> moedas = cofrinho.getMoedas();
+        
+        int quantidadeDolar = 0;
+        int quantidadeEuro = 0;
+        int quantidadeReal = 0;
+        
+        for (Moeda moeda : moedas) {
+            if (moeda instanceof Dolar) {
+                quantidadeDolar++;
+            } else if (moeda instanceof Euro) {
+                quantidadeEuro++;
+            } else if (moeda instanceof Real) {
+                quantidadeReal++;
+            }
+        }
+        
+        System.out.println("Quantidade de moedas:");
+        System.out.println("Dólar: " + quantidadeDolar);
+        System.out.println("Euro: " + quantidadeEuro);
+        System.out.println("Real: " + quantidadeReal);
     }
-
+    //funcao para tirar moedas do cofrinho
     private static void tirarDinheiro(Scanner scanner, Cofrinho cofrinho) {
+    	
         System.out.println("\nTirar dinheiro:");
         System.out.print("> Quantidade em dólar: ");
         int quantidadeDolar = scanner.nextInt();
