@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-abstract class Moeda {//classe para identificar o que e moeda e nacionalidade
+//* ---------- classe para identificar o que e moeda e nacionalidade ------------------ */
+
+abstract class Moeda {
     protected double valor;
     protected String pais;
 
@@ -25,7 +27,9 @@ abstract class Moeda {//classe para identificar o que e moeda e nacionalidade
         throw new UnsupportedOperationException("Unimplemented method 'getNome'");
     }
 }
-//classe da moeda dolar e cambio
+
+//* ----------- classe da moeda dolar e cambio ----------------- */
+
 class Dolar extends Moeda {
     private int quantidade;
 
@@ -41,7 +45,8 @@ class Dolar extends Moeda {
         return quantidade;
     }
 }
-//classe da moeda euro e cambio
+//* ------------------ classe da moeda euro e cambio ------------------------- */
+
 class Euro extends Moeda {
     private int quantidade;
 
@@ -57,7 +62,8 @@ class Euro extends Moeda {
         return quantidade;
     }
 }
-//classe da moeda real
+//* ------------------ classe da moeda real ------------------- */
+
 class Real extends Moeda {
     private int quantidade;
 
@@ -74,7 +80,9 @@ class Real extends Moeda {
     }
 }
 
-class Cofrinho { //classe para identificar o cofrinho e organizando lista
+//* -------- classe para identificar o cofrinho e organizando lista ---------- */
+
+class Cofrinho { 
 	private List<Moeda> moedas = new ArrayList<>();
 
     public void adicionar(Moeda moeda) {
@@ -110,12 +118,15 @@ class Cofrinho { //classe para identificar o cofrinho e organizando lista
     }
     
 }
-//cotacao das moedas
+//* -------------------------- cotacao das moedas --------------------------- */
+
 public class main {
     private static final double COTACAO_DOLAR = 5.10;
     private static final double COTACAO_EURO = 5.55;
     private static final double COTACAO_REAL = 1;
-//main com o menu e funcionalidades abaixo.
+
+//* ------------ main com o menu e funcionalidades abaixo --------------------------- */
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
@@ -150,7 +161,8 @@ public class main {
             }
         }
     }
-    //funcao para adicionar dinheiro
+//* ------------------------- funcao para adicionar dinheiro ------------------------ */
+  
     private static void adicionarDinheiro(Scanner scanner, Cofrinho cofrinho) {
         System.out.println("\nAdicionar dinheiro:");
         System.out.print("> Quantidade em dólar: ");
@@ -166,7 +178,9 @@ public class main {
 
         System.out.println("Valor total em reais: " + cofrinho.calcularValorTotalEmReal());
     }
-    //funcao para listar as moedas que ja tem no cofrinho
+
+//* ---------- funcao para listar as moedas que ja tem no cofrinho ---------------------*/
+  
     private static void listarDinheiro(Scanner scanner, Cofrinho cofrinho) {
         List<Moeda> moedas = cofrinho.getMoedas();
         
@@ -189,7 +203,9 @@ public class main {
         System.out.println("Euro: " + quantidadeEuro);
         System.out.println("Real: " + quantidadeReal);
     }
-    //funcao para tirar moedas do cofrinho
+
+//* --------------- funcao para tirar moedas do cofrinho -------------------- */
+
     private static void tirarDinheiro(Scanner scanner, Cofrinho cofrinho) {
     	
         System.out.println("\nTirar dinheiro:");
@@ -221,4 +237,5 @@ public class main {
 
         System.out.println("Valor total em reais após retirada: " + cofrinho.calcularValorTotalEmReal());
     }
+//* ----------------------------------------------------------------------------------- */
 }
