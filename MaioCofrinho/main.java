@@ -140,24 +140,23 @@ public class main {
             System.out.println("4 - Sair");
             System.out.print("Digite sua opção: ");
             int opcao = scanner.nextInt();
-            //opcoes do menu
+
+            //! opcoes do menu
+
             switch (opcao) {
-                case 1:
-                    adicionarDinheiro(scanner, cofrinho);
-                    break;
-                case 2:
-                    cofrinho.listarMoedas();
-                    break;
-                case 3:
-                    tirarDinheiro(scanner, cofrinho);
-                    break;
-                case 4:
+                case 1 -> {adicionarDinheiro(scanner, cofrinho);}
+
+                case 2 -> {listarDinheiro(scanner, cofrinho);}
+                    
+                case 3 -> {tirarDinheiro(scanner, cofrinho);}
+                    
+                case 4 -> {
                     System.out.println("\nAté logo!");
                     scanner.close();
                     System.exit(0);
-                default:
-                    System.out.println("\nOpção Inválida!");
-                    break;
+                }
+                    
+                default -> {System.out.println("\nOpção Inválida!");}    
             }
         }
     }
